@@ -68,7 +68,7 @@ const App = () => {
       ) : (
         <AppJSX />
       )}
-    </PaperProvider>
+  </PaperProvider>
   );
 };
 
