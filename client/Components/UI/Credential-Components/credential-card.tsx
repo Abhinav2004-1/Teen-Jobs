@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Animated from "react-native-reanimated";
 import {} from "react-native-paper";
-import { StyleSheet, Dimensions, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, Dimensions, KeyboardAvoidingView, Platform } from "react-native";
 
 const { Value, spring } = Animated;
 const { width, height } = Dimensions.get("window");
@@ -22,7 +22,7 @@ const CredentialCard: React.FC<any> = (props) => {
   }, []);
 
   return (
-    <KeyboardAvoidingView keyboardVerticalOffset={50} style={{maxHeight: 460}}>
+    <KeyboardAvoidingView  behavior={Platform.OS === "ios" ? 'position' : "height"} keyboardVerticalOffset={50} style={{maxHeight: 500}}>
       <Animated.ScrollView
         style={[Styles.Container, { transform: [{ scale: Container }] }]}
       >
@@ -36,7 +36,7 @@ const Styles = StyleSheet.create({
   Container: {
     width: width * (2.85 / 3),
     borderRadius: 10,
-    backgroundColor: "#d8d8d8",
+    backgroundColor: 'rgb(224, 224, 224)',
     marginTop: 5,
     overflow: 'hidden'
   },

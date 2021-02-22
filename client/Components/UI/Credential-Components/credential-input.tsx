@@ -1,12 +1,14 @@
 import React from "react";
 import { View } from "react-native";
-import { TextInput } from "react-native-paper";
+import { TextInput, HelperText } from "react-native-paper";
 
 interface PROPS {
   label: string;
   mode: "flat" | "outlined";
   onChangeText: (key: string) => void;
   value: string;
+  error?: boolean;
+  secureTextEntry?: boolean
 }
 
 const CredentialInput: React.FC<PROPS> = (props) => {
@@ -31,7 +33,8 @@ const CredentialInput: React.FC<PROPS> = (props) => {
         style={{
           padding: -15,
           width: "93.6776%",
-          borderRadius: 10
+          borderRadius: 10,
+          backgroundColor: 'rgb(224, 224, 224)'
         }}
       />
     </View>

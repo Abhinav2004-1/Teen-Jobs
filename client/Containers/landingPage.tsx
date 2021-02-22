@@ -18,13 +18,57 @@ interface PROPS {
 const LandingPage = () => {
   const [username_login, SetUsernameLogin] = useState<string>("");
   const [password_login, SetPasswordLogin] = useState<string>("");
+  const [username_signup, SetUsernameSignup] = useState<string>("");
+  const [password_signup, SetPasswordSignup] = useState<string>("");
+  const [confirm_signup, SetConfirmSignup] = useState<string>("");
+  const [phone_signup, SetPhoneSignup] = useState<string>("");
+  const [username_login_err, SetUsernameLoginErr] = useState<boolean>(false);
+  const [password_login_err, SetPasswordLoginErr] = useState<boolean>(false);
+  const [username_signup_err, SetUsernameSignupErr] = useState<boolean>(false);
+  const [password_signup_err, SetPasswordSignupErr] = useState<boolean>(false);
+  const [confirm_signup_err, SetConfirmSignupErr] = useState<boolean>(false);
+  const [phone_signup_err, SetPhoneSignupErr] = useState<boolean>(false);
 
+  const ChangeUsernameSignup = (value: string): void => {
+    SetUsernameSignup(value);
+  };
+  const ChangePasswordSignup = (value: string): void => {
+    SetPasswordSignup(value);
+  };
+  const ChangeCorfirmSignup = (value: string): void => {
+    SetConfirmSignup(value);
+  };
+  const ChangePhoneSignup = (value: string): void => {
+    SetPhoneSignup(value);
+  };
   const ChangeUsernameLogin = (value: string): void => {
     SetUsernameLogin(value);
   };
-
   const ChangePasswordLogin = (value: string): void => {
     SetPasswordLogin(value);
+  };
+
+  const LoginHandler = () => {
+    if (username_login.length > 3 && password_login.length > 7) {
+      const number_regex = /[0-9]/;
+      if (number_regex.exec(password_login) !== null) {
+        // axios call backend
+      } else {
+      }
+    }
+  };
+
+  const SignupHandler = () => {
+    if (
+      username_signup.length > 3 &&
+      confirm_signup === password_signup &&
+      password_signup.length > 7 &&
+      phone_signup.length >= 10
+    ) {
+      const number_regex = /[0-9]/;
+      if (number_regex.exec(password_signup) !== null) {
+      }
+    }
   };
 
   return (
@@ -58,10 +102,12 @@ const LandingPage = () => {
         >
           {() => (
             <Login
-              ChangeUsername = {(text: string) => ChangeUsernameLogin(text)}
-              ChangePassword = {(text: string) => ChangePasswordLogin(text)}
-              password = {password_login}
-              username = {username_login}
+              ChangeUsername={(text: string) => ChangeUsernameLogin(text)}
+              ChangePassword={(text: string) => ChangePasswordLogin(text)}
+              password={password_login}
+              username={username_login}
+              password_err = {password_login_err}
+              username_err = {username_login_err}
             />
           )}
         </Tabs.Screen>
@@ -75,9 +121,7 @@ const LandingPage = () => {
             ),
           }}
         >
-          {() => (
-            <HomePage/>
-          )}
+          {() => <HomePage />}
         </Tabs.Screen>
 
         <Tabs.Screen
@@ -89,7 +133,22 @@ const LandingPage = () => {
             ),
           }}
         >
-          {() => <Signup />}
+          {() => (
+            <Signup
+              username={username_signup}
+              password={password_signup}
+              confirm={confirm_signup}
+              phone={phone_signup}
+              ChangeUsername={(text: string) => ChangeUsernameSignup(text)}
+              ChangeConfirm={(text: string) => ChangeCorfirmSignup(text)}
+              ChangePhone={(text: string) => ChangePhoneSignup(text)}
+              ChangePassword={(text: string) => ChangePasswordSignup(text)}
+              password_err = {password_signup_err}
+              username_err = {username_signup_err}
+              confirm_err = {confirm_signup_err}
+              phone_err = {phone_signup_err}
+            />
+          )}
         </Tabs.Screen>
       </Tabs.Navigator>
     </NavigationContainer>
