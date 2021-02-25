@@ -1,20 +1,22 @@
 import React from 'react';
-import { View, StyleSheet, Text, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import Card from '../card';
 
 const Home = () => {
     return (
-        <View style={Styles.mainContainer}>
+        <ScrollView style={Styles.mainContainer} contentContainerStyle={{alignItems: 'center'}}>
             <StatusBar backgroundColor='#4776E6'/>
-            <Text style={{fontWeight: 'bold'}}>Home</Text>
-        </View>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+        </ScrollView>
     )
 };
 
 const Styles = StyleSheet.create({
     mainContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        flex: 1
     }
 })
 

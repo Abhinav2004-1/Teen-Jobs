@@ -1,12 +1,12 @@
-$color: #9ebafc;
-
-.name{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.Board{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    height: 300px;
+};
+
+.First, .Second, .Third {
+    display: flex;
+    width: 100%;
+    background-color: #333;
 }

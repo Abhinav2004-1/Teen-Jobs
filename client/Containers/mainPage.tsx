@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from '../Components/MainPage/home';
 import Search from '../Components/MainPage/search';
 import Messages from '../Components/MainPage/Messages/messages';
-import Profile from '../Components/MainPage/profile';
+import Profile from '../Components/MainPage/Profile/profile';
 import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 
 const Tabs = createMaterialTopTabNavigator();

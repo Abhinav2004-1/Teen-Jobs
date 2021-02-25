@@ -1,5 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text, StatusBar } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 const Profile = () => {
     return (
