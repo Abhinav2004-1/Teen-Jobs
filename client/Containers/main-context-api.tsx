@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MainContext = React.createContext({
-    user_info: {}
+    user_info: null
 });
 
 export default MainContext;

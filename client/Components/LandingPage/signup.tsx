@@ -1,4 +1,3 @@
-import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StatusBar, View } from "react-native";
 import CredentialCard from "../UI/Credential-Components/credential-card";
@@ -31,7 +30,7 @@ const Signup: React.FC<PROPS> = (props) => {
           label="Username"
           onChangeText={(text: string) => props.ChangeUsername(text)}
           mode="outlined"
-          value={props.password}
+          value={props.username}
         />
         <CredentialInput
           label="Password"
@@ -44,16 +43,17 @@ const Signup: React.FC<PROPS> = (props) => {
           label="Confirm"
           onChangeText={(text: string) => props.ChangeConfirm(text)}
           mode="outlined"
-          value={props.password}
+          value={props.confirm}
           secureTextEntry = {true}
         />
         <CredentialInput
           label="Phone"
           onChangeText={(text: string) => props.ChangePhone(text)}
           mode="outlined"
-          value={props.password}
+          value={props.phone}
+          keyboardType = 'phone-pad'
         />
-        <CredentialSubmitBtn Type="Signup" />
+        <CredentialSubmitBtn Type="Signup"/>
       </CredentialCard>
     </View>
   );

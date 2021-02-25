@@ -6,16 +6,18 @@ import { Ionicons, Feather } from "@expo/vector-icons";
 import Signup from "../Components/LandingPage/signup";
 import Login from "../Components/LandingPage/login";
 import HomePage from "./HomePage";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Tabs = createMaterialTopTabNavigator();
 const { width, height } = Dimensions.get("window");
 const { currentHeight } = StatusBar;
 
 interface PROPS {
-  Username: string;
+  ChangeAuthentication: (type: boolean, userInfo: object, token: string) => Promise<void>;
 }
 
-const LandingPage = () => {
+const LandingPage: React.FC<PROPS> = (props) => {
   const [username_login, SetUsernameLogin] = useState<string>("");
   const [password_login, SetPasswordLogin] = useState<string>("");
   const [username_signup, SetUsernameSignup] = useState<string>("");
@@ -48,13 +50,21 @@ const LandingPage = () => {
     SetPasswordLogin(value);
   };
 
-  const LoginHandler = () => {
+  const LoginHandler = async(): Promise<void> => {
     if (username_login.length > 3 && password_login.length > 7) {
       const number_regex = /[0-9]/;
       if (number_regex.exec(password_login) !== null) {
         // axios call backend
-      } else {
-      }
+        const context = {
+          Username: username_login,
+          Password: password_login
+        }
+        const Error = {access_denied: true};
+        const response = await axios.post('/login', context);
+        if(JSON.stringify(response) !== JSON.stringify(Error)){
+          props.ChangeAuthentication(true, response.data.UserInfo, response.data.token);
+        }
+      } 
     }
   };
 

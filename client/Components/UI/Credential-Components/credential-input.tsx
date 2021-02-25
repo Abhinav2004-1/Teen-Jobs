@@ -8,7 +8,8 @@ interface PROPS {
   onChangeText: (key: string) => void;
   value: string;
   error?: boolean;
-  secureTextEntry?: boolean
+  secureTextEntry?: boolean;
+  keyboardType?: 'phone-pad';
 }
 
 const CredentialInput: React.FC<PROPS> = (props) => {

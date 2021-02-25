@@ -1,5 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "proxy": "http://192.168.0.104:8000",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -40,7 +41,8 @@
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.2",
     "react-native-web": "~0.13.12",
-    "react-navigation-header-buttons": "^6.2.1"
+    "react-navigation-header-buttons": "^6.2.1",
+    "socket.io-client": "^2.3.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
