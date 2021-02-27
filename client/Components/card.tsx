@@ -1,23 +1,38 @@
 import React from "react";
-import { StyleSheet, View, Dimensions, Image, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Dimensions,
+  Image,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const { width, height } = Dimensions.get("window");
 
-const LocationText = () => {
+const LocationText: React.FC<{ Location: string }> = ({ Location }) => {
   return (
     <View
       style={{
-        width: "40%",
         position: "absolute",
         top: 8,
-        left: '2%',
+        left: "2%",
         backgroundColor: "#ff385c",
         borderRadius: 20,
         alignItems: "center",
         justifyContent: "center",
         paddingVertical: 7,
+        paddingHorizontal: "6%",
+        flexDirection: "row",
       }}
     >
+      <Ionicons
+        name="ios-location-sharp"
+        size={25}
+        color="#fff"
+        style={{ marginRight: 2 }}
+      />
       <Text
         style={{
           fontWeight: "bold",
@@ -25,13 +40,13 @@ const LocationText = () => {
           color: "#fff",
         }}
       >
-        Kathmandu, Nepal
+        {Location}
       </Text>
     </View>
   );
 };
 
-const TitleText = () => {
+const TitleText: React.FC<{ Title: string }> = ({ Title }) => {
   return (
     <Text
       style={{
@@ -43,12 +58,14 @@ const TitleText = () => {
         color: "#fff",
       }}
     >
-      Land Area
+      {Title}
     </Text>
   );
 };
 
-const DescriptionText = () => {
+const DescriptionText: React.FC<{ Description: string }> = ({
+  Description,
+}) => {
   return (
     <Text
       style={{
@@ -60,19 +77,24 @@ const DescriptionText = () => {
         color: "#d8d8d8",
       }}
     >
-      Buy now at a special offer
+      {Description}
     </Text>
   );
 };
 
 const Card = () => {
   return (
-    <View style={Styles.CardContainer}>
-      <Image source={require("../assets/picture.jpeg")} style={Styles.Image} />
-      <LocationText />
-      <TitleText />
-      <DescriptionText />
-    </View>
+    <TouchableOpacity activeOpacity={1} onPress={() => console.log('pressed')}>
+      <View style={Styles.CardContainer}>
+        <Image
+          source={require("../assets/picture.jpeg")}
+          style={Styles.Image}
+        />
+        <LocationText Location="Kathmandu, Nepal" />
+        <TitleText Title="Land Area" />
+        <DescriptionText Description="Buy now at a special offer" />
+      </View>
+    </TouchableOpacity>
   );
 };
 
