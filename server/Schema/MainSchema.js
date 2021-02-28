@@ -6,8 +6,10 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLSchema,
+  GraphQLID,
 } = require("graphql");
 import RegistrationModel from "../Models/register.js";
+import PropertyModel from '../Models/properties.js';
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -59,9 +61,36 @@ const AddUserResolver = (args) => {
   }
 };
 
+const FetchProperties = (request_count) => {
+  PropertyModel.find({}).skip(request_count * 10).limit(10).then((response) => {
+    return response;
+  })
+}
+
+const RootQuery = new GraphQLObjectType({
+  name: 'RootQuery',
+  fields: {
+    Properties: {
+      type: PropertySchema,
+      args: {request_count: {type: GraphQLInt}},
+      resolve: (_, args) => {
+        return FetchProperties(args.request_count);
+      }
+    },
+
+    Property: {
+      type: PropertySchema,
+      args: {id: {type: GraphQLID}},
+      resolve: (_, args) => {
+        return PropertyModel.findById(args.id);
+      }
+    }
+  }
+})
+
 const Mutator = new GraphQLObjectType({
-  name: "Root-Query",
-  description: "This is the RootQuery",
+  name: "MUTATOR",
+  description: "This is the Mutator",
   fields: {
     AddUser: {
       type: RegisterSchema,
@@ -88,6 +117,7 @@ const Mutator = new GraphQLObjectType({
 
 const MainSchema = new GraphQLSchema({
   mutation: Mutator,
+  query: RootQuery
 });
 
 export default MainSchema;

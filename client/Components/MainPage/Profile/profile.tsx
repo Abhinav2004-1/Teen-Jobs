@@ -1,20 +1,23 @@
 import React from 'react';
-import { View, StyleSheet, StatusBar } from 'react-native';
+import { View, StyleSheet, StatusBar, ScrollView } from 'react-native';
+import CollateralCard from './collateral-card';
+import NoAchievement from './no-achievement-page';
 import ProfileHeader from './profile-header';
 
 const Profile = () => {
     return (
-        <View style={Styles.mainContainer}>
+        <ScrollView contentContainerStyle={{ alignItems: 'center' }} style={Styles.mainContainer}>
             <StatusBar backgroundColor='#4776E6'/>
             <ProfileHeader/>
-        </View>
+            <NoAchievement/>
+            <CollateralCard/>
+        </ScrollView>
     )
 };
 
 const Styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
-        alignItems: 'center'
     }
 })
 
