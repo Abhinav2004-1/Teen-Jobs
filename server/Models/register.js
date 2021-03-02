@@ -11,7 +11,7 @@ const Schema = new mongoose.Schema({
         required: true
     },
 
-    Email: {
+    Phone: {
         type: String,
         required: true
     }

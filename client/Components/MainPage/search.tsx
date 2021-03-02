@@ -65,7 +65,7 @@ const Styles = StyleSheet.create({
   Icon: {
     position: "absolute",
     top: 20,
-    right: "4%",
+    right: "4%"
   },
 });
 
