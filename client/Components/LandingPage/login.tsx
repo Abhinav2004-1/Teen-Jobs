@@ -13,6 +13,7 @@ interface PROPS {
   password: string;
   username_err: boolean;
   password_err: boolean;
+  SubmitHandler: () => void;
 }
 
 const Login: React.FC<PROPS> = (props) => {
@@ -52,7 +53,7 @@ const Login: React.FC<PROPS> = (props) => {
         >
           Password should be 8 characters long
         </HelperText>
-        <CredentialSubmitBtn Type="Login" />
+        <CredentialSubmitBtn Submit={props.SubmitHandler} Type="Login" />
         <CredentialSubmitBtn Type="Forgot" />
       </CredentialCard>
     </View>

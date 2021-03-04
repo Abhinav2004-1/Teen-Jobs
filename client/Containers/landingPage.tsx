@@ -68,7 +68,7 @@ const LandingPage: React.FC<PROPS> = (props) => {
     }
   };
 
-  const SignupHandler = () => {
+  const SignupHandler = async(): Promise<void> => {
     if (
       username_signup.length > 3 &&
       confirm_signup === password_signup &&
@@ -77,6 +77,17 @@ const LandingPage: React.FC<PROPS> = (props) => {
     ) {
       const number_regex = /[0-9]/;
       if (number_regex.exec(password_signup) !== null) {
+        const context = {
+          Username: username_signup,
+          Password: password_signup,
+          Confirm: confirm_signup,
+          Phone: phone_signup
+        }
+        const response = await axios.post('/register', context);
+        const Error = {access_denied: true};
+        if(JSON.stringify(response) !== JSON.stringify(Error)){
+          props.ChangeAuthentication(true, response.data.UserInfo, response.data.token);
+        }
       }
     }
   };
@@ -118,6 +129,7 @@ const LandingPage: React.FC<PROPS> = (props) => {
               username={username_login}
               password_err = {password_login_err}
               username_err = {username_login_err}
+              SubmitHandler = {LoginHandler}
             />
           )}
         </Tabs.Screen>
@@ -157,6 +169,7 @@ const LandingPage: React.FC<PROPS> = (props) => {
               username_err = {username_signup_err}
               confirm_err = {confirm_signup_err}
               phone_err = {phone_signup_err}
+              SubmitHandler={SignupHandler}
             />
           )}
         </Tabs.Screen>

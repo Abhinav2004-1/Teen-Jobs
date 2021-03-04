@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import Home from "../Components/MainPage/home";
+import Home from "../Components/MainPage/Home/home";
 import Search from "../Components/MainPage/search";
 import Messages from "../Components/MainPage/Messages/messages";
 import Profile from "../Components/MainPage/Profile/profile";

@@ -36,7 +36,7 @@ const LoginHandler = (args, cb) => {
                   Phone: profile.Phone,
                 };
                 GetToken(context, (token) => {
-                  return cb({ ...context, token });
+                  return cb({ UserInfo: context, token });
                 });
               }
               return cb({access_denied: true});

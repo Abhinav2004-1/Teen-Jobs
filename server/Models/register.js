@@ -14,6 +14,21 @@ const Schema = new mongoose.Schema({
     Phone: {
         type: String,
         required: true
+    },
+    
+    BlockedProperties: {
+        type: [String],
+        default: []
+    },
+
+    Collateral_Available: {
+        type: String,
+        default: 0
+    },
+
+    Achievements: {
+        type: [String],
+        default: []
     }
 });
 

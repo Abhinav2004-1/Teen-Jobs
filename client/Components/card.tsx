@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { propertyinfo } from './MainPage/Home/CardList';
 
 const { width, height } = Dimensions.get("window");
 
@@ -82,17 +83,25 @@ const DescriptionText: React.FC<{ Description: string }> = ({
   );
 };
 
-const Card = () => {
+const Card: React.FC<{ navigation: any; propertyinfo?: propertyinfo | any }> = (
+  props
+) => {
+  const { Picture, Title, Description, Location } = props.propertyinfo;
   return (
-    <TouchableOpacity activeOpacity={1} onPress={() => console.log('pressed')}>
+    <TouchableOpacity
+      activeOpacity={1}
+      onPress={() => {
+        props.navigation.navigate("Inner", props.propertyinfo);
+      }}
+    >
       <View style={Styles.CardContainer}>
         <Image
-          source={require("../assets/picture.jpeg")}
+          source={{uri: Picture}}
           style={Styles.Image}
         />
-        <LocationText Location="Kathmandu, Nepal" />
-        <TitleText Title="Land Area" />
-        <DescriptionText Description="Buy now at a special offer" />
+        <LocationText Location={Location} />
+        <TitleText Title={Title} />
+        <DescriptionText Description={Description} />
       </View>
     </TouchableOpacity>
   );

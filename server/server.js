@@ -8,6 +8,7 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const ExpressGraphQL = require('express-graphql').graphqlHTTP;
 import RootSchema from './Schema/MainSchema.js';
+import LoginRoute from './Routes/login-route.js';
 
 import dotenv from 'dotenv';
 dotenv.config()
@@ -36,6 +37,7 @@ app.use('/graphql', ExpressGraphQL({
     schema: RootSchema
 }));
 app.use('/register', RegisterRoute);
+app.use('/login', LoginRoute);
 
 // db connection;
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {

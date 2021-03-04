@@ -51,7 +51,7 @@ const AddUserResolver = (args, cb) => {
                   Phone,
                 });
                 Data.save().then(() => {
-                  return cb({ Username, Password: hash, Phone, token });
+                  return cb({ UserInfo: {Username, Password: hash, Phone}, token });
                 });
               });
             });
@@ -65,7 +65,7 @@ const AddUserResolver = (args, cb) => {
 };
 
 router.post("/", async (req, res) => {
-  AddUserResolver(req.body, (data) => {
+  AddUserResolver(req.body, data => {
     return res.json(data);
   });
 });

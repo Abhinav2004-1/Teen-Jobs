@@ -2,33 +2,33 @@ import mongoose from 'mongoose';
 const SchemaInstance = mongoose.Schema;
 
 const Schema = new SchemaInstance({
-    location: {
+    Location: {
         type: String,
         required: true
     },
 
-    title: {
+    Title: {
         type: String,
         required: true
     },
 
-    description: {
+    Description: {
         type: String,
         required: true
     },
 
-    price: {
+    Price: {
         type: String,
         required: true
     },
 
-    image: {
+    Picture: {
         type: String,
         data: Buffer,
         required: true
     },
 
-    dimensions: {
+    Dimensions: {
         type: {length: Number, width: Number},
         required: true
     },

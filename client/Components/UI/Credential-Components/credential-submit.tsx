@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
-const CredentialSubmitBtn: React.FC<{ Type: string }> = ({ Type }) => {
+const CredentialSubmitBtn: React.FC<{ Type: string, Submit?: () => void }> = ({ Type, Submit }) => {
   return (
     <TouchableOpacity
       style={{
@@ -9,6 +9,7 @@ const CredentialSubmitBtn: React.FC<{ Type: string }> = ({ Type }) => {
         justifyContent: "center",
         marginVertical: 15,
       }}
+      onPress={Submit}
     >
       <View
         style={[

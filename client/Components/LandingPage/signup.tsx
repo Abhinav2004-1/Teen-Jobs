@@ -18,6 +18,7 @@ interface PROPS {
   password_err: boolean;
   confirm_err: boolean;
   phone_err: boolean;
+  SubmitHandler: () => void
 }
 
 const Signup: React.FC<PROPS> = (props) => {
@@ -53,7 +54,7 @@ const Signup: React.FC<PROPS> = (props) => {
           value={props.phone}
           keyboardType = 'phone-pad'
         />
-        <CredentialSubmitBtn Type="Signup"/>
+        <CredentialSubmitBtn Submit={props.SubmitHandler} Type="Signup"/>
       </CredentialCard>
     </View>
   );
