@@ -6,7 +6,6 @@ const {
   GraphQLInt,
   GraphQLSchema,
   GraphQLID,
-  GraphQLList,
 } = require("graphql");
 import PropertyModel from "../Models/properties.js";
 import RegistrationModel from "../Models/register.js";
@@ -38,7 +37,9 @@ const UserType = new GraphQLObjectType({
       Phone: { type: GraphQLString },
       token: { type: GraphQLString },
       Collateral_Available: {type: GraphQLString},
-      Achievements: {type: GraphQLString}
+      Achievements: {type: GraphQLString},
+      Deals: {type: GraphQLInt},
+      Ratings: {type: GraphQLInt}
     };
   },
 });

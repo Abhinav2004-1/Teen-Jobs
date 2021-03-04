@@ -6,6 +6,7 @@ import Search from "../Components/MainPage/search";
 import Messages from "../Components/MainPage/Messages/messages";
 import Profile from "../Components/MainPage/Profile/profile";
 import { MaterialIcons, AntDesign } from "@expo/vector-icons";
+import AddPropertyPage from "../Components/MainPage/add-property-page";
 
 const Tabs = createMaterialTopTabNavigator();
 
@@ -60,6 +61,21 @@ const MainPage = () => {
               ChangeInput={(text: string) => ChangeSearchValue(text)}
             />
           )}
+        </Tabs.Screen>
+
+        <Tabs.Screen
+          name="Add"
+          options={{
+            tabBarIcon: (status) => {
+              return (
+                <AntDesign name="pluscircle" size={27} color={status.color} />
+              );
+            },
+          }}
+        >
+          {() => {
+            return <AddPropertyPage />;
+          }}
         </Tabs.Screen>
 
         <Tabs.Screen

@@ -20,27 +20,26 @@ const App = () => {
   useEffect(() => {
     const CheckAuthentication = async (): Promise<void> => {
       const TotalStorages = await AsyncStorage.getAllKeys();
-      SetAuthStatus(true);
-      // if (TotalStorages.length >= 3) {
-      //   const token = await AsyncStorage.getItem("auth-token");
-      //   const Username = await AsyncStorage.getItem("Username");
-      //   const hash = await AsyncStorage.getItem("hash");
-      //   if (token && Username && hash) {
-      //     const context = { token, hash };
-      //     const response = await axios.post("/check-auth", context);
-      //     if (
-      //       JSON.stringify({ auth_token_err: true }) !==
-      //       JSON.stringify(response.data)
-      //     ) {
-      //       SetUserInfo({ Username, hash, token });
-      //       SetAuthStatus(true);
-      //     } else {
-      //       SetAuthStatus(false);
-      //     }
-      //   }
-      // } else {
-      //   SetAuthStatus(false);
-      // }
+      if (TotalStorages.length >= 3) {
+        const token = await AsyncStorage.getItem("auth-token");
+        const Username = await AsyncStorage.getItem("Username");
+        const hash = await AsyncStorage.getItem("hash");
+        if (token && Username && hash) {
+          const context = { token, hash };
+          const response = await axios.post("/check-auth", context);
+          if (
+            JSON.stringify({ auth_token_err: true }) !==
+            JSON.stringify(response.data)
+          ) {
+            SetUserInfo({ Username, hash, token });
+            SetAuthStatus(true);
+          } else {
+            SetAuthStatus(false);
+          }
+        }
+      } else {
+        SetAuthStatus(false);
+      }
     };
     // Calling the function;
     CheckAuthentication();
@@ -53,6 +52,7 @@ const App = () => {
   ) => {
     await AsyncStorage.setItem("token", token);
     await AsyncStorage.setItem("user-info", JSON.stringify(userInfo));
+    await AsyncStorage.setItem('Username', userInfo.Username);
     SetUserInfo(userInfo);
     SetAuthStatus(type);
   };

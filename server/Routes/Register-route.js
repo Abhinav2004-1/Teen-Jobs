@@ -55,13 +55,16 @@ const AddUserResolver = (args, cb) => {
                 });
               });
             });
+          }else{
+            return cb({access_denied: true});
           }
-          return cb({access_denied: true});
         });
+    }else{
+      return cb({access_denied: true});
     }
+  }else{
     return cb({access_denied: true});
   }
-  return cb({access_denied: true});
 };
 
 router.post("/", async (req, res) => {

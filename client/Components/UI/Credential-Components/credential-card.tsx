@@ -22,7 +22,7 @@ const CredentialCard: React.FC<any> = (props) => {
   }, []);
 
   return (
-    <KeyboardAvoidingView  behavior={Platform.OS === "ios" ? 'position' : "height"} keyboardVerticalOffset={50} style={{maxHeight: 500}}>
+    <KeyboardAvoidingView  behavior={Platform.OS === "ios" ? 'position' : "height"} keyboardVerticalOffset={80} style={{maxHeight: 500}}>
       <Animated.ScrollView
         style={[Styles.Container, { transform: [{ scale: Container }] }]}
       >

@@ -29,6 +29,16 @@ const Schema = new mongoose.Schema({
     Achievements: {
         type: [String],
         default: []
+    },
+
+    Deals: {
+        type: Number,
+        default: 0
+    },
+
+    Ratings: {
+        type: Number,
+        default: 0
     }
 });
 

@@ -3,8 +3,9 @@ import RegistrationModel from '../Models/register.js';
 
 const router = express.Router();
 
-router.post('/', () => {
-    RegistrationModel.re
+router.delete('/', async(_, res) => {
+    await RegistrationModel.remove();
+    return res.json({deleted: true});
 })
 
 export default router;

@@ -83,7 +83,7 @@ const LandingPage: React.FC<PROPS> = (props) => {
           Confirm: confirm_signup,
           Phone: phone_signup
         }
-        const response = await axios.post('/register', context);
+        const response = await axios.post('http://192.168.0.106:8000/register', context);
         const Error = {access_denied: true};
         if(JSON.stringify(response) !== JSON.stringify(Error)){
           props.ChangeAuthentication(true, response.data.UserInfo, response.data.token);

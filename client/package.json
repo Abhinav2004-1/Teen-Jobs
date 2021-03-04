@@ -1,6 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "proxy": "http://192.168.0.104:8000",
+  "proxy": "http://192.168.0.106:8000",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
