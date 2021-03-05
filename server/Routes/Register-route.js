@@ -30,7 +30,7 @@ const AddUserResolver = (args, cb) => {
   const Username = args.Username;
   const Password = args.Password;
   const Confirm = args.Confirm;
-  const Phone = args.Password;
+  const Phone = args.Phone;
   if (
     Username.length > 5 &&
     Password === Confirm &&
@@ -51,7 +51,7 @@ const AddUserResolver = (args, cb) => {
                   Phone,
                 });
                 Data.save().then(() => {
-                  return cb({ UserInfo: {Username, Password: hash, Phone}, token });
+                  return cb({ UserInfo: {Username, Hash: hash, Phone}, token });
                 });
               });
             });

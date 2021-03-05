@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet, Dimensions, Image, Text } from "react-native";
 import { AirbnbRating } from "react-native-ratings";
+import MainContext from "../../../Containers/main-context-api";
 
 const { width, height } = Dimensions.get("window");
 
-const ProfilePicture = () => {
+const ProfilePicture: React.FC<{Username: string}> = ({ Username }) => {
   return (
     <View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
       <Image
@@ -19,7 +20,7 @@ const ProfilePicture = () => {
           color: "#fff",
         }}
       >
-        Abhinav.1
+        { Username }
       </Text>
     </View>
   );
@@ -69,10 +70,12 @@ const ProfileInformation = () => {
   );
 };
 
+
 const ProfileHeader = () => {
+  const context: {user_info: any} = useContext(MainContext);
   return (
     <View style={Styles.HeaderContainer}>
-      <ProfilePicture />
+      <ProfilePicture Username={context.user_info === null ? '' : context.user_info.Username}/>
       <ProfileInformation />
       <View style={{position: 'absolute', bottom: 16, right: '5%'}}>
         <AirbnbRating

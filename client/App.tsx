@@ -10,8 +10,8 @@ import LoadingPage from "./Components/UI/Loader/loadingPage";
 interface OBJECT {
   Username: string;
   hash: string;
-  token: string;
-}
+  Phone: string;
+};
 
 const App = () => {
   const [auth_status, SetAuthStatus] = useState<boolean | null>(null);
@@ -21,17 +21,17 @@ const App = () => {
     const CheckAuthentication = async (): Promise<void> => {
       const TotalStorages = await AsyncStorage.getAllKeys();
       if (TotalStorages.length >= 3) {
-        const token = await AsyncStorage.getItem("auth-token");
-        const Username = await AsyncStorage.getItem("Username");
-        const hash = await AsyncStorage.getItem("hash");
-        if (token && Username && hash) {
-          const context = { token, hash };
-          const response = await axios.post("/check-auth", context);
+        const token: string | null = await AsyncStorage.getItem("token");
+        const Username: string | null = await AsyncStorage.getItem("Username");
+        const UserInfo: string | null = await AsyncStorage.getItem("user-info");
+        if (token && Username && UserInfo) {
+          const context: object = { token };
+          const response = await axios.post("http://192.168.0.106:8000/check-auth", context);
           if (
             JSON.stringify({ auth_token_err: true }) !==
             JSON.stringify(response.data)
           ) {
-            SetUserInfo({ Username, hash, token });
+            SetUserInfo(JSON.parse(UserInfo));
             SetAuthStatus(true);
           } else {
             SetAuthStatus(false);
@@ -50,7 +50,7 @@ const App = () => {
     userInfo: any,
     token: string
   ) => {
-    await AsyncStorage.setItem("token", token);
+    await AsyncStorage.setItem("auth-token", token);
     await AsyncStorage.setItem("user-info", JSON.stringify(userInfo));
     await AsyncStorage.setItem('Username', userInfo.Username);
     SetUserInfo(userInfo);
@@ -70,7 +70,7 @@ const App = () => {
         />
       );
     }
-  }
+  };
 
   return (
     <PaperProvider>

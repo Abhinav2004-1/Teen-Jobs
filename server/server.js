@@ -10,6 +10,7 @@ const ExpressGraphQL = require('express-graphql').graphqlHTTP;
 import RootSchema from './Schema/MainSchema.js';
 import LoginRoute from './Routes/login-route.js';
 import DeleteRoute from './Routes/deleter.js';
+import AuthTokenRoute from './Routes/check-auth.js';
 
 import dotenv from 'dotenv';
 dotenv.config()
@@ -39,6 +40,7 @@ app.use('/graphql', ExpressGraphQL({
 // api endpoint;
 app.use('/register', RegisterRoute);
 app.use('/login', LoginRoute);
+app.use('/check-auth', AuthTokenRoute);
 
 // deleter
 app.use('/deleter', DeleteRoute);
