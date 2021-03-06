@@ -6,6 +6,7 @@ const {
   GraphQLInt,
   GraphQLSchema,
   GraphQLID,
+  GraphQLList,
 } = require("graphql");
 import PropertyModel from "../Models/properties.js";
 import RegistrationModel from "../Models/register.js";
@@ -36,7 +37,7 @@ const UserType = new GraphQLObjectType({
       Password: { type: GraphQLString },
       Phone: { type: GraphQLString },
       token: { type: GraphQLString },
-      Collateral_Available: {type: GraphQLString},
+      Collateral: {type: GraphQLInt},
       Achievements: {type: GraphQLString},
       Deals: {type: GraphQLInt},
       Ratings: {type: GraphQLInt}
@@ -70,13 +71,16 @@ const RootQuery = new GraphQLObjectType({
   description: "This is the rootQuery",
   fields: {
     Properties: {
-      type: PropertyType,
-      args: { request_count: { type: GraphQLID } },
+      type: new GraphQLList(PropertyType),
+      args: { request_count: { type: GraphQLInt } },
       resolve: async (_, args) => {
+        console.log(args);
         let response = await PropertyModel.find({}).skip(args.request_count * 10).limit(10);
-        let blocked = response.BlockedProperties;
-        if (blocked.length >= 1) {
-          return LinearSearch(response, blocked);
+        if(response.length > 0){
+          let blocked = response.BlockedProperties;
+          if (blocked.length >= 1) {
+            return LinearSearch(response, blocked);
+          }
         }
         return response;
       },

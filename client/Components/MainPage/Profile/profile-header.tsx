@@ -64,7 +64,7 @@ const ProfileInformation = () => {
         marginLeft: 10,
       }}
     >
-      <Info Title="Deals" info="0" />
+      <Info Title="Deals" info="10" />
       <Info Title="Ratings" info="0" />
     </View>
   );
@@ -79,7 +79,7 @@ const ProfileHeader = () => {
       <ProfileInformation />
       <View style={{position: 'absolute', bottom: 16, right: '5%'}}>
         <AirbnbRating
-          defaultRating={3}
+          defaultRating={2}
           size={30}
           unSelectedColor = '#fff'
           selectedColor = 'yellow'

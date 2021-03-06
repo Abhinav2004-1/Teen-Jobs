@@ -21,8 +21,8 @@ const Schema = new mongoose.Schema({
         default: []
     },
 
-    Collateral_Available: {
-        type: String,
+    Collateral: {
+        type: Number,
         default: 0
     },
 

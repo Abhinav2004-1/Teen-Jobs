@@ -1,6 +1,5 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, StatusBar, ScrollView } from 'react-native';
-import MainContext from '../../../Containers/main-context-api';
 import CollateralCard from './collateral-card';
 import NoAchievement from './no-achievement-page';
 import ProfileHeader from './profile-header';
