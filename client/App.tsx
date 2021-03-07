@@ -19,9 +19,10 @@ const App = () => {
 
   useEffect(() => {
     const CheckAuthentication = async (): Promise<void> => {
+      // await AsyncStorage.clear();
       const TotalStorages = await AsyncStorage.getAllKeys();
       if (TotalStorages.length >= 3) {
-        const token: string | null = await AsyncStorage.getItem("token");
+        const token: string | null = await AsyncStorage.getItem("auth-token");
         const Username: string | null = await AsyncStorage.getItem("Username");
         const UserInfo: string | null = await AsyncStorage.getItem("user-info");
         if (token && Username && UserInfo) {
@@ -34,6 +35,7 @@ const App = () => {
             SetUserInfo(JSON.parse(UserInfo));
             SetAuthStatus(true);
           } else {
+            await AsyncStorage.clear();
             SetAuthStatus(false);
           }
         }

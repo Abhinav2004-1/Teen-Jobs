@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "../Components/MainPage/Home/home";
@@ -18,9 +18,6 @@ const client = new ApolloClient({
 });
 
 const MainPage = () => {
-  const [search_value, SetSearchValue] = useState<string>("");
-
-  const ChangeSearchValue = (text: string) => SetSearchValue(text);
 
   const RouterInstance = (
     <NavigationContainer>
@@ -63,10 +60,7 @@ const MainPage = () => {
         }}
       >
         {() => (
-          <Search
-            search_value={search_value}
-            ChangeInput={(text: string) => ChangeSearchValue(text)}
-          />
+          <Search/>
         )}
       </Tabs.Screen>
 

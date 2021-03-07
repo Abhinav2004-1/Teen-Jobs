@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 
-interface PROPS {
-  ChangeInput: (text: string) => void;
-  search_value: string;
-}
+// interface PROPS {
+//   ChangeInput: (text: string) => void;
+//   search_value: string;
+// }
 
 const { width } = Dimensions.get("window");
 
@@ -27,7 +27,10 @@ const NoDataPage = () => {
   );
 };
 
-const Search: React.FC<PROPS> = (props) => {
+const Search = () => {
+  const [search_value, SetSearchValue] = useState<string>("");
+
+  const ChangeSearchValue = (text: string) => SetSearchValue(text);
   return (
     <View style={Styles.mainContainer}>
       <StatusBar backgroundColor="#4776E6" />
@@ -35,9 +38,9 @@ const Search: React.FC<PROPS> = (props) => {
         <TextInput
           style={Styles.SearchInput}
           placeholder="Search for properties"
-          value={props.search_value}
-          onChangeText={(text: string) => props.ChangeInput(text)}
-          spellCheck={false}
+          value={search_value}
+          onChangeText={(text: string) => ChangeSearchValue(text)}
+          // spellCheck={false}
         />
         <AntDesign style={Styles.Icon} name="search1" size={27} color="black" />
       </View>

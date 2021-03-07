@@ -60,7 +60,7 @@ const LandingPage: React.FC<PROPS> = (props) => {
           Password: password_login
         }
         const Error = {access_denied: true};
-        const response = await axios.post('/login', context);
+        const response = await axios.post('http://192.168.0.106:8000/login', context);
         if(JSON.stringify(response) !== JSON.stringify(Error)){
           props.ChangeAuthentication(true, response.data.UserInfo, response.data.token);
         }

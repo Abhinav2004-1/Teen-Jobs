@@ -75,7 +75,7 @@ const RootQuery = new GraphQLObjectType({
       args: { request_count: { type: GraphQLInt } },
       resolve: async (_, args) => {
         console.log(args);
-        let response = await PropertyModel.find({}).skip(args.request_count * 10).limit(10);
+        let response = await PropertyModel.find({}).skip(parseInt(args.request_count) * 10).limit(10);
         if(response.length > 0){
           let blocked = response.BlockedProperties;
           if (blocked.length >= 1) {

@@ -24,9 +24,8 @@ const LoginHandler = (args, cb) => {
   if (Username.length > 5 && Password.length > 7) {
     const number_regex = /[0-9]/;
     if (number_regex.exec(Password) !== null) {
-      RegistrationModel.findOne({ Username })
-        .exec()
-        .then((profile) => {
+      RegistrationModel.findOne({ Username }).exec()
+        .then(profile => {
           if (profile !== null) {
             bcrypt.compare(Password, profile.Password, (err, condition) => {
               if (condition === true) {
@@ -35,22 +34,26 @@ const LoginHandler = (args, cb) => {
                   Password: profile.Password,
                   Phone: profile.Phone,
                 };
-                GetToken(context, (token) => {
-                  return cb({ UserInfo: context, token });
+                GetToken(context, token => {
+                  const ResponseData = { UserInfo: {Username, Hash: profile.Password, Phone: profile.Phone}, token: token };
+                  return cb(ResponseData);
                 });
+              }else{
+                return cb({access_denied: true});
               }
-              return cb({access_denied: true});
             });
+          }else{
+            return cb({access_denied: true});
           }
-          return cb({access_denied: true});
         });
     }
+  }else{
+   return cb({access_denied: true});
   }
-  return cb({access_denied: true});
 };
 
 router.post("/", (req, res) => {
-  LoginHandler(req.body, (data) => {
+  LoginHandler(req.body, data => {
     return res.json(data);
   });
 });
